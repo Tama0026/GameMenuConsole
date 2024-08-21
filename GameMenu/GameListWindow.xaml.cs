@@ -12,6 +12,13 @@ namespace GameMenu
 
     public partial class GameListWindow : Window
     {
+        private SpaceShooterGame spaceShooterWindow;
+        private Snake snakeWindow;
+        private Tetris tetrisWindow;
+        private FlappyBird flappyBirdWindow;
+        private ChessUI.MainWindow chessWindow;
+        private Memory.MainWindow memoryWindow;
+
         public GameListWindow(List<Game> games)
         {
             InitializeComponent();
@@ -35,22 +42,22 @@ namespace GameMenu
             switch (gameName)
             {
                 case "Space Shooter":
-                    StartSpaceShooter();
+                    OpenSingleWindow(ref spaceShooterWindow, CreateSpaceShooterWindow);
                     break;
                 case "Snake":
-                    StartSnake();
+                    OpenSingleWindow(ref snakeWindow, CreateSnakeWindow);
                     break;
                 case "Tetris":
-                    StartTetris();
+                    OpenSingleWindow(ref tetrisWindow, CreateTetrisWindow);
                     break;
                 case "FlappyBird":
-                    StartFlappyBird();
-                    break;
-                case "Memory":
-                    StartMemory();
+                    OpenSingleWindow(ref flappyBirdWindow, CreateFlappyBirdWindow);
                     break;
                 case "Chess":
-                    StartChess();
+                    OpenSingleWindow(ref chessWindow, CreateChessWindow);
+                    break;
+                case "Memory":
+                    OpenSingleWindow(ref memoryWindow, CreateMemoryWindow);
                     break;
                 default:
                     MessageBox.Show("Game not found!");
@@ -58,37 +65,36 @@ namespace GameMenu
             }
         }
 
-        private void StartSpaceShooter()
+        private void OpenSingleWindow<T>(ref T gameWindow, System.Func<T> createWindow) where T : Window
         {
-            SpaceShooterGame game1 = new SpaceShooterGame();
-            game1.Show();
+            if (gameWindow == null || !gameWindow.IsVisible)
+            {
+                gameWindow = createWindow();
+                gameWindow.Closed += GameWindow_Closed;
+                gameWindow.Show();
+            }
+            else
+            {
+                gameWindow.Activate(); // Bring the existing window to the front
+            }
         }
 
-        private void StartSnake()
+        private void GameWindow_Closed(object sender, System.EventArgs e)
         {
-            Snake snake = new Snake();
-            snake.Show();
+            // Reset the reference to null when the window is closed
+            if (sender is SpaceShooterGame) spaceShooterWindow = null;
+            else if (sender is Snake) snakeWindow = null;
+            else if (sender is Tetris) tetrisWindow = null;
+            else if (sender is FlappyBird) flappyBirdWindow = null;
+            else if (sender is ChessUI.MainWindow) chessWindow = null;
+            else if (sender is Memory.MainWindow) memoryWindow = null;
         }
 
-        private void StartTetris()
-        {
-            Tetris game1 = new Tetris();
-            game1.Show();
-        }
-        private void StartFlappyBird()
-        {
-            FlappyBird game1 = new FlappyBird();
-            game1.Show();
-        }
-        private void StartChess()
-        {
-            ChessUI.MainWindow game1 = new ChessUI.MainWindow();
-            game1.Show();
-        }
-        private void StartMemory()
-        {
-            Memory.MainWindow game1 = new Memory.MainWindow();
-            game1.Show();
-        }
+        private SpaceShooterGame CreateSpaceShooterWindow() => new SpaceShooterGame();
+        private Snake CreateSnakeWindow() => new Snake();
+        private Tetris CreateTetrisWindow() => new Tetris();
+        private FlappyBird CreateFlappyBirdWindow() => new FlappyBird();
+        private ChessUI.MainWindow CreateChessWindow() => new ChessUI.MainWindow();
+        private Memory.MainWindow CreateMemoryWindow() => new Memory.MainWindow();
     }
 }
