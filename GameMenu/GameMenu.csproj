@@ -13,12 +13,17 @@
     <None Remove="assesst\play_button.png" />
     <None Remove="assesst\play_label.png" />
     <None Remove="assesst\start_game.png" />
+    <None Remove="assesst_shootergame\bgst.png" />
     <None Remove="assesst_shootergame\boss.png" />
+    <None Remove="assesst_shootergame\boss1.png" />
+    <None Remove="assesst_shootergame\boss2.png" />
     <None Remove="assesst_shootergame\buff_ammo.png" />
     <None Remove="assesst_shootergame\buff_damage.png" />
     <None Remove="assesst_shootergame\buff_health.png" />
     <None Remove="assesst_shootergame\bullet.png" />
     <None Remove="assesst_shootergame\obstancle.png" />
+    <None Remove="assesst_shootergame\obstancle1.png" />
+    <None Remove="assesst_shootergame\obstancle2.png" />
     <None Remove="assesst_shootergame\ship.png" />
     <None Remove="Assets\BishopB.png" />
     <None Remove="Assets\BishopW.png" />
@@ -114,12 +119,17 @@
     <Resource Include="assesst\play_button.png" />
     <Resource Include="assesst\play_label.png" />
     <Resource Include="assesst\start_game.png" />
+    <Resource Include="assesst_shootergame\bgst.png" />
     <Resource Include="assesst_shootergame\boss.png" />
+    <Resource Include="assesst_shootergame\boss1.png" />
+    <Resource Include="assesst_shootergame\boss2.png" />
     <Resource Include="assesst_shootergame\buff_ammo.png" />
     <Resource Include="assesst_shootergame\buff_damage.png" />
     <Resource Include="assesst_shootergame\buff_health.png" />
     <Resource Include="assesst_shootergame\bullet.png" />
     <Resource Include="assesst_shootergame\obstancle.png" />
+    <Resource Include="assesst_shootergame\obstancle1.png" />
+    <Resource Include="assesst_shootergame\obstancle2.png" />
     <Resource Include="assesst_shootergame\ship.png" />
     <Resource Include="Assets\BishopB.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

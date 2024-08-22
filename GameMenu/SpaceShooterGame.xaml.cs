@@ -381,17 +381,30 @@ namespace GameMenu
         {
             if (bossAppeared) return;
 
+            // List of obstacle image paths
+            string[] obstacleImages = new string[]
+            {
+                "pack://application:,,,/assesst_shootergame/obstancle.png",
+                "pack://application:,,,/assesst_shootergame/obstancle1.png",
+                "pack://application:,,,/assesst_shootergame/obstancle2.png"
+            };
+
+            // Randomly select one of the obstacle images
+            string selectedImage = obstacleImages[rand.Next(obstacleImages.Length)];
+
             Image newObstacle = new Image
             {
-                Source = new BitmapImage(new Uri("pack://application:,,,/assesst_shootergame/obstancle.png")),
+                Source = new BitmapImage(new Uri(selectedImage)),
                 Width = 50,
                 Height = 50,
                 Tag = new { Type = "obstacle", Health = rand.Next(10, 16) }
             };
+
             Canvas.SetLeft(newObstacle, rand.Next(0, (int)GameCanvas.ActualWidth - 50));
             Canvas.SetTop(newObstacle, -50);
             GameCanvas.Children.Add(newObstacle);
         }
+
         private void ShowWarningMessage()
         {
             if (warningMessage == null)
@@ -458,7 +471,8 @@ namespace GameMenu
             warningTimer.Tick += (s, e) =>
             {
                 warningTimer.Stop(); // Stop the warning timer
-                                     // Proceed to prepare the boss appearance
+
+                // Proceed to prepare the boss appearance
                 if (!bossAppeared)
                 {
                     // Remove existing obstacles
@@ -481,10 +495,21 @@ namespace GameMenu
                     Canvas.SetTop(bossMessage, (GameCanvas.ActualHeight - bossMessage.ActualHeight) / 2);
                     GameCanvas.Children.Add(bossMessage);
 
+                    // List of boss image paths
+                    string[] bossImages = new string[]
+                    {
+                        "pack://application:,,,/assesst_shootergame/boss.png",
+                        "pack://application:,,,/assesst_shootergame/boss1.png",
+                        "pack://application:,,,/assesst_shootergame/boss2.png"
+                    };
+
+                    // Randomly select one of the boss images
+                    string selectedBossImage = bossImages[rand.Next(bossImages.Length)];
+
                     // Create the boss
                     Image boss = new Image
                     {
-                        Source = new BitmapImage(new Uri("pack://application:,,,/assesst_shootergame/boss.png")),
+                        Source = new BitmapImage(new Uri(selectedBossImage)),
                         Width = 100,
                         Height = 100,
                         Tag = new { Type = "boss", Health = bossHealth }
@@ -525,6 +550,7 @@ namespace GameMenu
             };
             warningTimer.Start();
         }
+
 
 
 
@@ -784,7 +810,7 @@ namespace GameMenu
             {
                 if (playerHealth < maxHealth) // Check if health buff should be created
                 {
-                    buffType = "healthBuff";
+                    buffType = "buff_health";
                 }
                 else
                 {

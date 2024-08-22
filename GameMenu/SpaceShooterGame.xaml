@@ -8,7 +8,10 @@
         Title="SpaceShooterGame" Height="600" Width="400"
         WindowStartupLocation="CenterScreen"
         MouseMove="Window_MouseMove">
-    <Canvas Name="GameCanvas" Background="Black">
+    <Canvas Name="GameCanvas">
+        <Canvas.Background>
+            <ImageBrush ImageSource="assesst_shootergame/bgst.png" />
+        </Canvas.Background>
         <!-- Player Ship as an Image -->
         <Image Name="PlayerShip" Source="assesst_shootergame/ship.png" Width="50" Height="50" Canvas.Left="175" Canvas.Top="499" RenderTransformOrigin="2.8,-0.999"/>
 
